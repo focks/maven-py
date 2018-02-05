@@ -12,7 +12,9 @@ RUN apt-get install python3.6 -y
 
 # install pip3
 RUN apt-get update -y
-RUN apt-get install python3-pip -y
+RUN apt-get install curl -y
+RUN curl https://bootstrap.pypa.io/get-pip.py | sudo python3.6
+# RUN apt-get install python3-pip -y
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
@@ -24,9 +26,8 @@ RUN apt-get install maven -y
 
 RUN rm -rf /var/lib/apt/lists/*
 
-RUN echo "alias python=python3.6" > ~/.bashrc
-RUN echo "alias python3=python3.6" > ~/.bashrc
-RUN echo "alias pip=pip3" > ~/.bashrc
+RUN echo "alias python=python3.6" >> ~/.bashrc
+RUN echo "alias python3=python3.6" >> ~/.bashrc
+RUN echo "alias pip=pip3" >> ~/.bashrc
 
 CMD ["source", "~/.bashrc"]
-
